@@ -1,6 +1,5 @@
 import os
 import logging
-from logging.handlers import RotatingFileHandler
 
 from flask import Flask, render_template
 from flask_login import LoginManager
@@ -20,7 +19,7 @@ login_manager.login_message_category = "info"
 def create_app(env_name=None):
     app = Flask(__name__)
 
-    env_name = env_name or os.environ.get("FLASK_ENV", "development")
+    env_name = env_name or os.environ.get("FLASK_ENV", "production")
     app.config.from_object(config_by_name[env_name])
 
     if env_name == "production":
@@ -48,14 +47,14 @@ def create_app(env_name=None):
     app.register_blueprint(history_bp)
 
     # --- Logging ---
+    # File logging fails on Vercel's read-only filesystem; use stream logging instead
     if not app.debug:
-        os.makedirs(os.path.dirname(app.config["LOG_FILE"]), exist_ok=True)
-        handler = RotatingFileHandler(app.config["LOG_FILE"], maxBytes=1_000_000, backupCount=3)
-        handler.setFormatter(
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(
             logging.Formatter("%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]")
         )
-        handler.setLevel(logging.INFO)
-        app.logger.addHandler(handler)
+        stream_handler.setLevel(logging.INFO)
+        app.logger.addHandler(stream_handler)
         app.logger.setLevel(logging.INFO)
 
     # --- Error handlers ---
@@ -81,6 +80,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+# Top-level 'app' instance required by Vercel:
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=app.config["DEBUG"])
+    app.run(debug=app.config.get("DEBUG", False))
