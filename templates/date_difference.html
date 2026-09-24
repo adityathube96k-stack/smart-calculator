@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Date Difference — Smart Calculator{% endblock %}
+
+{% block content %}
+<h1>Date Difference Calculator</h1>
+<p>How far apart are two dates? Get days, weeks, and full years between them.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field-row">
+        <div class="field">
+            <label for="startDateInput">Start date</label>
+            <input type="date" id="startDateInput">
+        </div>
+        <div class="field">
+            <label for="endDateInput">End date</label>
+            <input type="date" id="endDateInput">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcDateDiffBtn">Calculate Difference</button>
+    <div class="error-text" id="dateDiffError"></div>
+</div>
+
+<div class="display-panel" style="max-width: 480px; margin-top: var(--space-4);">
+    <div class="display-panel__label">Difference</div>
+    <div class="display-panel__value" id="dateDiffResult">—</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/age.js') }}"></script>
+{% endblock %}

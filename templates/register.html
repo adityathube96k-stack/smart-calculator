@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Sign Up — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <h1>Create your account</h1>
+    <p>Save history and favorites across every calculator.</p>
+
+    <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
+        <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn--primary btn--block">Create Account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+</div>
+{% endblock %}

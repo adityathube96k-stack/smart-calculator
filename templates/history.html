@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}History — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">{% endblock %}
+
+{% block content %}
+<div class="history-header">
+    <h1>History</h1>
+    <button class="btn btn--ghost" id="clearHistoryBtn">Clear All</button>
+</div>
+
+{% if entries %}
+<div class="card">
+    <table class="history-table">
+        <thead>
+            <tr>
+                <th>Calculator</th>
+                <th>Expression</th>
+                <th>Result</th>
+                <th>When</th>
+            </tr>
+        </thead>
+        <tbody id="historyTableBody">
+            {% for entry in entries %}
+            <tr>
+                <td><span class="badge">{{ entry.calculator }}</span></td>
+                <td class="history-expr">{{ entry.expression }}</td>
+                <td class="history-result">{{ entry.result }}</td>
+                <td class="history-date">{{ entry.created_at.strftime('%d %b, %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="card">
+    <p>No calculations saved yet. Results are saved automatically once you're logged in.</p>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Currency Converter — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/converter.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Currency Converter</h1>
+<p>Live exchange rates, converted instantly.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="currencyAmountInput">Amount</label>
+        <input type="number" step="any" id="currencyAmountInput" placeholder="e.g. 100">
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label for="currencyFromInput">From (e.g. USD)</label>
+            <input type="text" id="currencyFromInput" maxlength="3" placeholder="USD" style="text-transform:uppercase;">
+        </div>
+        <div class="field">
+            <label for="currencyToInput">To (e.g. INR)</label>
+            <input type="text" id="currencyToInput" maxlength="3" placeholder="INR" style="text-transform:uppercase;">
+        </div>
+    </div>
+
+    <button class="btn btn--primary btn--block" id="calcCurrencyBtn">Convert</button>
+    <div class="error-text" id="currencyError"></div>
+</div>
+
+<div class="display-panel" style="max-width: 480px; margin-top: var(--space-4);">
+    <div class="display-panel__label" id="currencyRateLabel">Rate</div>
+    <div class="display-panel__value" id="currencyResult">—</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/currency.js') }}"></script>
+{% endblock %}

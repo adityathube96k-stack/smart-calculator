@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Age Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/age.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Age Calculator</h1>
+<p>Enter a date of birth for a full breakdown — years, months, weeks, days, hours, even your zodiac sign.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="dobInput">Date of birth</label>
+        <input type="date" id="dobInput">
+    </div>
+    <div class="field">
+        <label for="birthTimeInput">Birth time (optional)</label>
+        <input type="time" id="birthTimeInput">
+    </div>
+    <button class="btn btn--primary btn--block" id="calcAgeBtn">Calculate Age</button>
+    <div class="error-text" id="ageError"></div>
+</div>
+
+<div class="card age-results" id="ageResults" style="display:none; max-width: 480px;">
+    <div class="display-panel">
+        <div class="display-panel__label">Age</div>
+        <div class="display-panel__value" id="ageMain">—</div>
+    </div>
+
+    <div class="age-grid">
+        <div class="age-stat"><span id="ageWeeks"></span><label>Weeks</label></div>
+        <div class="age-stat"><span id="ageTotalDays"></span><label>Total days</label></div>
+        <div class="age-stat"><span id="ageHours"></span><label>Hours</label></div>
+        <div class="age-stat"><span id="ageMinutes"></span><label>Minutes</label></div>
+    </div>
+
+    <div class="age-meta">
+        <p><strong>Born on:</strong> <span id="ageDayOfBirth"></span></p>
+        <p><strong>Zodiac sign:</strong> <span id="ageZodiac"></span></p>
+        <p><strong>Next birthday:</strong> <span id="ageNextBirthday"></span> (<span id="ageCountdown"></span> days away)</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/age.js') }}"></script>
+{% endblock %}

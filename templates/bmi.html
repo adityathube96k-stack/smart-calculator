@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}BMI Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/converter.css') }}">{% endblock %}
+
+{% block content %}
+<h1>BMI Calculator</h1>
+<p>Body Mass Index from weight and height — with the standard category ranges.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field-row">
+        <div class="field">
+            <label for="weightInput">Weight (kg)</label>
+            <input type="number" step="any" id="weightInput" placeholder="e.g. 68">
+        </div>
+        <div class="field">
+            <label for="heightInput">Height (cm)</label>
+            <input type="number" step="any" id="heightInput" placeholder="e.g. 172">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcBmiBtn">Calculate BMI</button>
+    <div class="error-text" id="bmiError"></div>
+</div>
+
+<div class="display-panel" style="max-width: 480px; margin-top: var(--space-4);">
+    <div class="display-panel__label" id="bmiCategory">Category</div>
+    <div class="display-panel__value" id="bmiResult">—</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bmi.js') }}"></script>
+{% endblock %}

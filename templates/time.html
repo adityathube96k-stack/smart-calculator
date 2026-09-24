@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Time Calculator — Smart Calculator{% endblock %}
+
+{% block content %}
+<h1>Time Calculator</h1>
+<p>Add or subtract hours, minutes, and seconds from a base time.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="baseTimeInput">Base time</label>
+        <input type="time" id="baseTimeInput" step="1">
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label for="hoursInput">Hours</label>
+            <input type="number" id="hoursInput" value="0" min="0">
+        </div>
+        <div class="field">
+            <label for="minutesInput">Minutes</label>
+            <input type="number" id="minutesInput" value="0" min="0">
+        </div>
+    </div>
+    <div class="field">
+        <label for="secondsInput">Seconds</label>
+        <input type="number" id="secondsInput" value="0" min="0">
+    </div>
+    <div class="field">
+        <label for="timeOpSelect">Operation</label>
+        <select id="timeOpSelect">
+            <option value="add">Add</option>
+            <option value="subtract">Subtract</option>
+        </select>
+    </div>
+
+    <button class="btn btn--primary btn--block" id="calcTimeBtn">Calculate</button>
+    <div class="error-text" id="timeError"></div>
+</div>
+
+<div class="display-panel" style="max-width: 480px; margin-top: var(--space-4);">
+    <div class="display-panel__label">Result</div>
+    <div class="display-panel__value" id="timeResult">—</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/age.js') }}"></script>
+{% endblock %}

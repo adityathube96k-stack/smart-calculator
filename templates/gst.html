@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}GST Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">{% endblock %}
+
+{% block content %}
+<h1>GST Calculator</h1>
+<p>Add GST to a base amount, or extract it from a GST-inclusive price.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="gstAmountInput">Amount</label>
+        <input type="number" step="any" id="gstAmountInput" placeholder="e.g. 1000">
+    </div>
+    <div class="field">
+        <label for="gstRateInput">GST rate (%)</label>
+        <input type="number" step="any" id="gstRateInput" placeholder="e.g. 18">
+    </div>
+    <div class="field">
+        <label for="gstModeSelect">Amount is</label>
+        <select id="gstModeSelect">
+            <option value="exclusive">Exclusive of GST (add GST)</option>
+            <option value="inclusive">Inclusive of GST (extract GST)</option>
+        </select>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcGstBtn">Calculate GST</button>
+    <div class="error-text" id="gstError"></div>
+
+    <div class="finance-results" id="gstResults" style="display:none;">
+        <div class="finance-result-item"><label>Base Amount</label><span id="gstBase"></span></div>
+        <div class="finance-result-item"><label>GST Amount</label><span id="gstAmount"></span></div>
+        <div class="finance-result-item"><label>Total</label><span id="gstTotal"></span></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/gst.js') }}"></script>
+{% endblock %}

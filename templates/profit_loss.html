@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Profit & Loss Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Profit &amp; Loss Calculator</h1>
+<p>Compare cost price and selling price to see profit, loss, or break-even.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field-row">
+        <div class="field">
+            <label for="costPriceInput">Cost price</label>
+            <input type="number" step="any" id="costPriceInput" placeholder="e.g. 800">
+        </div>
+        <div class="field">
+            <label for="sellingPriceInput">Selling price</label>
+            <input type="number" step="any" id="sellingPriceInput" placeholder="e.g. 950">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcPlBtn">Calculate</button>
+    <div class="error-text" id="plError"></div>
+
+    <div class="display-panel" id="plResultPanel" style="display:none; margin-top: var(--space-4);">
+        <div class="display-panel__label" id="plType">—</div>
+        <div class="display-panel__value" id="plAmount">—</div>
+        <div class="display-panel__sub" id="plPercent"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/finance-misc.js') }}"></script>
+{% endblock %}

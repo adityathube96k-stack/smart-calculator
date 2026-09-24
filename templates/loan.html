@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Loan Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Loan Calculator</h1>
+<p>Simple-interest loan summary — total interest, total payable, and average monthly payment.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="loanPrincipalInput">Loan amount</label>
+        <input type="number" step="any" id="loanPrincipalInput" placeholder="e.g. 200000">
+    </div>
+    <div class="field-row">
+        <div class="field">
+            <label for="loanRateInput">Annual interest rate (%)</label>
+            <input type="number" step="any" id="loanRateInput" placeholder="e.g. 8">
+        </div>
+        <div class="field">
+            <label for="loanTenureInput">Tenure (years)</label>
+            <input type="number" step="any" id="loanTenureInput" placeholder="e.g. 5">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcLoanBtn">Calculate</button>
+    <div class="error-text" id="loanError"></div>
+
+    <div class="finance-results" id="loanResults" style="display:none;">
+        <div class="finance-result-item"><label>Total Interest</label><span id="loanInterest"></span></div>
+        <div class="finance-result-item"><label>Total Payable</label><span id="loanPayable"></span></div>
+        <div class="finance-result-item"><label>Monthly Payment</label><span id="loanMonthly"></span></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/emi.js') }}"></script>
+{% endblock %}

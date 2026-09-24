@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Percentage Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Percentage Calculator</h1>
+<p>Find what X% of a value is.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field-row">
+        <div class="field">
+            <label for="pctValueInput">Value</label>
+            <input type="number" step="any" id="pctValueInput" placeholder="e.g. 250">
+        </div>
+        <div class="field">
+            <label for="pctPercentInput">Percent (%)</label>
+            <input type="number" step="any" id="pctPercentInput" placeholder="e.g. 15">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcPctBtn">Calculate</button>
+    <div class="error-text" id="pctError"></div>
+
+    <div class="display-panel" style="margin-top: var(--space-4);">
+        <div class="display-panel__label">Result</div>
+        <div class="display-panel__value" id="pctResult">—</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/finance-misc.js') }}"></script>
+{% endblock %}

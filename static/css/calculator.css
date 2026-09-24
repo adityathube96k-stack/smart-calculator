@@ -1,0 +1,39 @@
+.calc-card { max-width: 420px; }
+
+.calc-keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: var(--space-4);
+}
+
+.calc-key {
+    padding: 16px 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.calc-key:hover { background: var(--border); }
+.calc-key:active { transform: scale(0.96); }
+
+.calc-key--fn { background: var(--border); color: var(--slate); }
+.calc-key--op { background: var(--ink); color: var(--phosphor); }
+.calc-key--op:hover { background: var(--ink-soft); }
+
+.calc-key--equals {
+    grid-column: span 4;
+    background: var(--phosphor);
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.calc-key--equals:hover { background: var(--phosphor-dim); }
+
+.calc-actions { margin-top: var(--space-3); }

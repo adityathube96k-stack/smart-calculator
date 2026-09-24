@@ -1,0 +1,33 @@
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.history-header h1 { margin: 0; }
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.history-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--slate);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+}
+
+.history-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.history-expr { font-family: var(--font-display); color: var(--slate); }
+.history-result { font-family: var(--font-display); font-weight: 700; }
+.history-date { color: var(--slate); font-size: 0.8rem; white-space: nowrap; }

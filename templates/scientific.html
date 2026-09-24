@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Scientific Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/calculator.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Scientific Calculator</h1>
+<p>Square root, power, logarithms, trigonometry, factorial, and the constants you keep reaching for.</p>
+
+<div class="card calc-card">
+    <div class="display-panel">
+        <div class="display-panel__label" id="sciOpLabel">Ready</div>
+        <div class="display-panel__value" id="sciResult">0</div>
+    </div>
+
+    <div class="field" style="margin-top: var(--space-4);">
+        <label for="sciValue">Value</label>
+        <input type="number" step="any" id="sciValue" placeholder="Enter a number">
+    </div>
+
+    <div class="field" id="sciValue2Field" style="display:none;">
+        <label for="sciValue2">Exponent (for power)</label>
+        <input type="number" step="any" id="sciValue2" placeholder="e.g. 2">
+    </div>
+
+    <div class="calc-keypad" id="sciKeypad">
+        <button class="calc-key calc-key--fn" data-op="sqrt">√x</button>
+        <button class="calc-key calc-key--fn" data-op="power">xʸ</button>
+        <button class="calc-key calc-key--fn" data-op="log">log</button>
+        <button class="calc-key calc-key--fn" data-op="ln">ln</button>
+
+        <button class="calc-key calc-key--fn" data-op="sin">sin</button>
+        <button class="calc-key calc-key--fn" data-op="cos">cos</button>
+        <button class="calc-key calc-key--fn" data-op="tan">tan</button>
+        <button class="calc-key calc-key--fn" data-op="factorial">n!</button>
+
+        <button class="calc-key calc-key--op" data-op="pi">π</button>
+        <button class="calc-key calc-key--op" data-op="e">e</button>
+    </div>
+
+    <div class="calc-actions">
+        <button class="btn btn--ghost" id="copyResultBtn">Copy Result</button>
+    </div>
+    <div class="error-text" id="sciError"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scientific.js') }}"></script>
+{% endblock %}

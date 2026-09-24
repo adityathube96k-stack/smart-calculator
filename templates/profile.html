@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Profile — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+
+<div class="card auth-card" style="margin: 0;">
+    <div class="profile-header">
+        <div class="profile-avatar">{{ user.name[0]|upper }}</div>
+        <div>
+            <h3 style="margin-bottom:2px;">{{ user.name }}</h3>
+            <p style="margin:0;">{{ user.email }}</p>
+        </div>
+    </div>
+
+    <p><strong>Member since:</strong> {{ user.created_at.strftime('%d %b %Y') }}</p>
+
+    <a href="{{ url_for('history.history_page') }}" class="btn btn--ghost btn--block" style="margin-top: var(--space-3);">View History</a>
+    <a href="{{ url_for('history.settings_page') }}" class="btn btn--ghost btn--block" style="margin-top: var(--space-2);">Settings</a>
+    <a href="{{ url_for('auth.logout') }}" class="btn btn--primary btn--block" style="margin-top: var(--space-2);">Log Out</a>
+</div>
+{% endblock %}

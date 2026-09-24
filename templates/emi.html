@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}EMI Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">{% endblock %}
+
+{% block content %}
+<h1>EMI Calculator</h1>
+<p>Monthly installment for a loan, based on principal, interest rate, and tenure.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="emiPrincipalInput">Loan amount</label>
+        <input type="number" step="any" id="emiPrincipalInput" placeholder="e.g. 500000">
+    </div>
+    <div class="field-row">
+        <div class="field">
+            <label for="emiRateInput">Annual interest rate (%)</label>
+            <input type="number" step="any" id="emiRateInput" placeholder="e.g. 9.5">
+        </div>
+        <div class="field">
+            <label for="emiTenureInput">Tenure (months)</label>
+            <input type="number" step="any" id="emiTenureInput" placeholder="e.g. 60">
+        </div>
+    </div>
+    <button class="btn btn--primary btn--block" id="calcEmiBtn">Calculate EMI</button>
+    <div class="error-text" id="emiError"></div>
+
+    <div class="finance-results" id="emiResults" style="display:none;">
+        <div class="finance-result-item"><label>Monthly EMI</label><span id="emiValue"></span></div>
+        <div class="finance-result-item"><label>Total Interest</label><span id="emiInterest"></span></div>
+        <div class="finance-result-item"><label>Total Payment</label><span id="emiTotal"></span></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/emi.js') }}"></script>
+{% endblock %}

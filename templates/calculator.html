@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Basic Calculator — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/calculator.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Basic Calculator</h1>
+<p>Addition, subtraction, multiplication, division, percentage, brackets — all evaluated safely, no shortcuts.</p>
+
+<div class="card calc-card">
+    <div class="display-panel">
+        <div class="display-panel__label">Expression</div>
+        <div class="display-panel__sub" id="calcExpression">0</div>
+        <div class="display-panel__value" id="calcResult">0</div>
+    </div>
+
+    <div class="calc-keypad" id="calcKeypad">
+        <button class="calc-key calc-key--fn" data-action="clear">AC</button>
+        <button class="calc-key calc-key--fn" data-action="backspace">⌫</button>
+        <button class="calc-key calc-key--fn" data-value="%">%</button>
+        <button class="calc-key calc-key--op" data-value="/">÷</button>
+
+        <button class="calc-key" data-value="7">7</button>
+        <button class="calc-key" data-value="8">8</button>
+        <button class="calc-key" data-value="9">9</button>
+        <button class="calc-key calc-key--op" data-value="*">×</button>
+
+        <button class="calc-key" data-value="4">4</button>
+        <button class="calc-key" data-value="5">5</button>
+        <button class="calc-key" data-value="6">6</button>
+        <button class="calc-key calc-key--op" data-value="-">−</button>
+
+        <button class="calc-key" data-value="1">1</button>
+        <button class="calc-key" data-value="2">2</button>
+        <button class="calc-key" data-value="3">3</button>
+        <button class="calc-key calc-key--op" data-value="+">+</button>
+
+        <button class="calc-key" data-value="(">(</button>
+        <button class="calc-key" data-value="0">0</button>
+        <button class="calc-key" data-value=".">.</button>
+        <button class="calc-key" data-value=")">)</button>
+
+        <button class="calc-key calc-key--equals" data-action="equals">=</button>
+    </div>
+
+    <div class="calc-actions">
+        <button class="btn btn--ghost" id="copyResultBtn">Copy Result</button>
+    </div>
+    <div class="error-text" id="calcError"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+{% endblock %}

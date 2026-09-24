@@ -1,0 +1,17 @@
+.converter-swap {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-2) 0;
+}
+
+.converter-swap button {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.converter-swap button:hover { border-color: var(--slate); }

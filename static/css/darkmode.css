@@ -1,0 +1,27 @@
+[data-theme="dark"] {
+    --paper: #14171A;
+    --panel: #1C2023;
+    --ink: #F7F5F0;
+    --ink-soft: #2A2F33;
+    --border: #2E3337;
+    --slate: #9BA3AC;
+    --slate-light: #6B747E;
+}
+
+[data-theme="dark"] .navbar { background: #0D0F11; }
+
+[data-theme="dark"] .btn--primary { color: var(--ink); }
+
+[data-theme="dark"] .field input,
+[data-theme="dark"] .field select {
+    background: var(--ink-soft);
+    color: var(--paper);
+}
+
+[data-theme="dark"] .display-panel {
+    box-shadow: inset 0 0 0 1px rgba(124, 242, 176, 0.1);
+}
+
+body, .card, .field input, .field select, .navbar, .footer {
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}

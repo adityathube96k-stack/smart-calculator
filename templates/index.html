@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Smart Calculator — Home{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <span class="badge">12 instruments, one panel</span>
+    <h1>Every calculation you run this week, in one place.</h1>
+    <p>Basic math, scientific functions, dates and time, unit and currency conversion, and the financial math that actually matters — GST, EMI, SIP, loans.</p>
+</section>
+
+<section class="dashboard-grid">
+    <a href="{{ url_for('calculator.calculator_page') }}" class="tool-card">
+        <span class="tool-card__label">Basic</span>
+        <span class="tool-card__value">12 + 7</span>
+    </a>
+    <a href="{{ url_for('scientific.scientific_page') }}" class="tool-card">
+        <span class="tool-card__label">Scientific</span>
+        <span class="tool-card__value">sin · log · √</span>
+    </a>
+    <a href="{{ url_for('age.age_page') }}" class="tool-card">
+        <span class="tool-card__label">Age</span>
+        <span class="tool-card__value">y · m · d</span>
+    </a>
+    <a href="{{ url_for('age.date_difference_page') }}" class="tool-card">
+        <span class="tool-card__label">Date Difference</span>
+        <span class="tool-card__value">Δ days</span>
+    </a>
+    <a href="{{ url_for('age.time_page') }}" class="tool-card">
+        <span class="tool-card__label">Time</span>
+        <span class="tool-card__value">hh:mm:ss</span>
+    </a>
+    <a href="{{ url_for('converter.bmi_page') }}" class="tool-card">
+        <span class="tool-card__label">BMI</span>
+        <span class="tool-card__value">kg/m²</span>
+    </a>
+    <a href="{{ url_for('converter.unit_converter_page') }}" class="tool-card">
+        <span class="tool-card__label">Unit Converter</span>
+        <span class="tool-card__value">m → ft</span>
+    </a>
+    <a href="{{ url_for('converter.currency_page') }}" class="tool-card">
+        <span class="tool-card__label">Currency</span>
+        <span class="tool-card__value">₹ → $</span>
+    </a>
+    <a href="{{ url_for('finance.gst_page') }}" class="tool-card">
+        <span class="tool-card__label">GST</span>
+        <span class="tool-card__value">18%</span>
+    </a>
+    <a href="{{ url_for('finance.emi_page') }}" class="tool-card">
+        <span class="tool-card__label">EMI</span>
+        <span class="tool-card__value">₹/mo</span>
+    </a>
+    <a href="{{ url_for('finance.loan_page') }}" class="tool-card">
+        <span class="tool-card__label">Loan</span>
+        <span class="tool-card__value">P + I</span>
+    </a>
+    <a href="{{ url_for('finance.sip_page') }}" class="tool-card">
+        <span class="tool-card__label">SIP</span>
+        <span class="tool-card__value">CAGR</span>
+    </a>
+    <a href="{{ url_for('finance.discount_page') }}" class="tool-card">
+        <span class="tool-card__label">Discount</span>
+        <span class="tool-card__value">% off</span>
+    </a>
+    <a href="{{ url_for('finance.profit_loss_page') }}" class="tool-card">
+        <span class="tool-card__label">Profit &amp; Loss</span>
+        <span class="tool-card__value">CP vs SP</span>
+    </a>
+    <a href="{{ url_for('finance.percentage_page') }}" class="tool-card">
+        <span class="tool-card__label">Percentage</span>
+        <span class="tool-card__value">x of y</span>
+    </a>
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Server Error — Smart Calculator{% endblock %}
+
+{% block content %}
+<div class="display-panel" style="max-width: 480px; margin: var(--space-6) auto; text-align:center;">
+    <div class="display-panel__label">Error 500</div>
+    <div class="display-panel__value">! ERR</div>
+    <div class="display-panel__sub">Something broke on our end. It's been logged.</div>
+</div>
+<div style="text-align:center;">
+    <a href="{{ url_for('index') }}" class="btn btn--primary">Back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Unit Converter — Smart Calculator{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/converter.css') }}">{% endblock %}
+
+{% block content %}
+<h1>Unit Converter</h1>
+<p>Length, weight, and temperature conversions.</p>
+
+<div class="card" style="max-width: 480px;">
+    <div class="field">
+        <label for="unitCategorySelect">Category</label>
+        <select id="unitCategorySelect">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label for="unitValueInput">Value</label>
+        <input type="number" step="any" id="unitValueInput" placeholder="Enter a value">
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label for="unitFromSelect">From</label>
+            <select id="unitFromSelect"></select>
+        </div>
+        <div class="field">
+            <label for="unitToSelect">To</label>
+            <select id="unitToSelect"></select>
+        </div>
+    </div>
+
+    <button class="btn btn--primary btn--block" id="calcUnitBtn">Convert</button>
+    <div class="error-text" id="unitError"></div>
+</div>
+
+<div class="display-panel" style="max-width: 480px; margin-top: var(--space-4);">
+    <div class="display-panel__label">Result</div>
+    <div class="display-panel__value" id="unitResult">—</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/converter.js') }}"></script>
+{% endblock %}
