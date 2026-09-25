@@ -3,15 +3,21 @@ from datetime import timedelta
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# On Vercel, the filesystem is read-only except for /tmp
+if os.environ.get("VERCEL"):
+    default_db_uri = "sqlite:////tmp/smartcalculator.db"
+    default_log_file = "/tmp/app.log"
+else:
+    default_db_uri = f"sqlite:///{os.path.join(basedir, 'instance', 'smartcalculator.db')}"
+    default_log_file = os.path.join(basedir, "logs", "app.log")
+
 
 class Config:
     """Base configuration shared by all environments."""
 
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key-change-me")
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", f"sqlite:///{os.path.join(basedir, 'instance', 'smartcalculator.db')}"
-    )
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", default_db_uri)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SESSION_COOKIE_HTTPONLY = True
@@ -23,7 +29,7 @@ class Config:
     # Currency API (used by currency converter). Free tier key can be added via .env
     EXCHANGE_RATE_API_KEY = os.environ.get("EXCHANGE_RATE_API_KEY", "")
 
-    LOG_FILE = os.path.join(basedir, "logs", "app.log")
+    LOG_FILE = default_log_file
 
 
 class DevelopmentConfig(Config):
