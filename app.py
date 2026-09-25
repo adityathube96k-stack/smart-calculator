@@ -19,10 +19,15 @@ login_manager.login_message_category = "info"
 def create_app(env_name=None):
     app = Flask(__name__)
 
-    env_name = env_name or os.environ.get("FLASK_ENV", "production")
+    # Safely resolve environment name to prevent KeyError: ''
+    raw_env = env_name or os.environ.get("FLASK_ENV")
+    env_name = raw_env.strip() if raw_env and raw_env.strip() else "development"
+    if env_name not in config_by_name:
+        env_name = "development"
+
     app.config.from_object(config_by_name[env_name])
 
-    if env_name == "production":
+    if env_name == "production" and hasattr(config_by_name["production"], "validate"):
         config_by_name["production"].validate()
 
     # --- Extensions ---
@@ -47,7 +52,6 @@ def create_app(env_name=None):
     app.register_blueprint(history_bp)
 
     # --- Logging ---
-    # File logging fails on Vercel's read-only filesystem; use stream logging instead
     if not app.debug:
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(
@@ -80,7 +84,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# Top-level 'app' instance required by Vercel:
+# Top-level instance for Vercel
 app = create_app()
 
 if __name__ == "__main__":
